@@ -23,7 +23,7 @@ void push_Books(Books* bk) {
 			i++;
 		}
 		m->name[i] = '\0';
-		m->state = '1';
+		m->state = Y;
 		m->next = bk->next;
 		bk->next = m;
 		FILE* f;

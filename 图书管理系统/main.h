@@ -5,6 +5,10 @@
 #include<stdlib.h>
 #include<string.h>
 #include<Windows.h>
+enum STATE {
+	Y='1',
+	N='0'
+};
 //定义图书通讯录
 typedef struct Books {
 	char name[NAMESPACE];//名字
@@ -35,3 +39,5 @@ extern void push_Books(Books* bk);
 extern void del_Books(Books* bk);
 // 修改图书
 extern void change_Books(Books* bk);
+// 查询所有图书
+extern void checkAllBooks(Books* bk);

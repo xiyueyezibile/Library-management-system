@@ -49,6 +49,7 @@ void menu_admin() {
 	printf("************2.增加图书***********\n");
 	printf("************3.删除图书***********\n");
 	printf("************4.修改图书***********\n");
+	printf("************5.所有图书***********\n");
 	printf("************0.退出***************\n");
 	printf("*********************************\n");
 	
@@ -91,7 +92,7 @@ int main() {
 			printf("请输入密码: \n");
 			scanf("%s", password);
 			clearInput();
-			file = fopen("./data.txt", "r+");
+			file = fopen("./data.txt", "r");
 			/*
 				文件格式
 				admin
@@ -112,6 +113,10 @@ int main() {
 						if (!isaccount) {
 							isaccount = 1;
 							continue;
+						}
+						// 判断密码前先让判断账号正确的变量失效
+						if (isaccount) {
+							isaccount = 0;
 						}
 						if (!strcmp(buf, password)) {
 							system("cls");
@@ -139,6 +144,10 @@ int main() {
 									}
 									else if (s_p == 4) {
 										change_Books(bk);
+										continue;
+									}
+									else if (s_p == 5) {
+										checkAllBooks(bk);
 										continue;
 									}
 									else if (s_p == 0) {

@@ -41,12 +41,20 @@ void check_Books(Books* bk) {
 	while (p != NULL && flag) {
 		if (!strcmp(name, p->name)) {
 			flag = 0;
-			printf("图书名字: %s 借阅状态: %s\n", p->name, p->state == '1' ? "未借阅" : "已借阅");
+			printf("图书名字: %s 借阅状态: %s\n", p->name, p->state == Y ? "未借阅" : "已借阅");
 		}
 		p = p->next;
 	}
 	if (flag) {
 		printf("图书不存在\n");
+	}
+}
+// 查询所有图书
+void checkAllBooks(Books* bk) {
+	Books* p = bk->next;
+	while (p != NULL) {
+		printf("图书名字: %s 借阅状态: %s\n", p->name, p->state == Y ? "未借阅" : "已借阅");
+		p = p->next;
 	}
 }
 // 借阅图书
@@ -61,10 +69,10 @@ void rent_Books(Books* bk) {
 		if (!strcmp(name, p->name)) {
 			flag = 0;
 			system("cls");
-			if (p->state == '1') {
+			if (p->state == Y) {
 				
 				printf("%s 借阅成功\n", p->name);
-				p->state = '0';
+				p->state = N;
 				FILE* f;
 				f = fopen("./bookdata.txt", "w");// 从文件中读取数据
 				/*
@@ -101,9 +109,9 @@ void back_Books(Books* bk) {
 		if (!strcmp(name, p->name)) {
 			flag = 0;
 			system("cls");
-			if (p->state == '0') {
+			if (p->state == N) {
 				printf("%s 归还成功\n", p->name);
-				p->state = '1';
+				p->state = Y;
 				FILE* f;
 				f = fopen("./bookdata.txt", "w");// 从文件中读取数据
 				/*
